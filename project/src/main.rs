@@ -8,6 +8,7 @@ struct Todo {
     id: usize,
     text: String,
     done: bool,
+    Remove : usize ,
 }
 
 const FILE_PATH: &str = "todos.json";
@@ -36,11 +37,13 @@ struct Cli {
     command: Commands,
 }
 
+//also add here when add new command in main
 #[derive(Subcommand)]
 enum Commands {
     Add { text: String },
     List,
     Done { id: usize },
+    Remove { id: usize },
 }
 
 
@@ -55,7 +58,7 @@ fn main() {
         // Add a new todo
         Commands::Add { text } => {
             let id = todos.len() + 1;
-            todos.push(Todo { id, text, done: false });
+            todos.push(Todo { id, text, done: false, Remove: id });
             save_todos(&todos);
             println!("Added todo #{id}");
         }
@@ -63,7 +66,7 @@ fn main() {
         // List all todos
         Commands::List => {
             if todos.is_empty() {
-                println!("📭 No todos yet!");
+                println!("No todos yet!");
             } else {
                 for todo in &todos {
                     let status = if todo.done { "✅" } else { "❌" };
