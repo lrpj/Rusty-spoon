@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "text": "Learn rust",
+    "done": true
+  },
+  {
+    "id": 2,
+    "text": "Finish todo list",
+    "done": true
+  }
+]
